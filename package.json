@@ -2,10 +2,9 @@
   "name": "ai_projekt_2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "dependencies": {
     "fast-csv": "^2.4.1",
-    "left-pad": "^1.2.0",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0"
   },
@@ -22,13 +21,24 @@
     "eslint-plugin-import": "^2.8.0",
     "flow-bin": "^0.60.1",
     "flow-typed": "^2.2.3",
+    "jest": "^21.2.1",
     "nodemon": "^1.12.1"
   },
   "scripts": {
     "start": "babel-node index.js",
-    "dev": "nodemon --watch src --watch index.js --exec babel-node index.js",
-    "lint": "eslint --ext=js src index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --coverage --runInBand",
+    "dev": "nodemon --watch src --watch index.js --ignore *.spec.js --exec babel-node index.js",
+    "lint": "npm run eslint && npm run flow-check",
+    "eslint": "eslint --ext=js src index.js",
+    "flow-check": "flow check",
     "flow-typed": "flow-typed install"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   },
   "author": "Tomasz Romik",
   "license": "MIT"

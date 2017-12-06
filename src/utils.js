@@ -16,9 +16,9 @@ export type EventOccuredType = (chance: number) => boolean;
 export type CheckFateType = () => number;
 
 export const combineSubjects: CombineSubjectsType = (first, second, cutPoint) => {
-  const parts = [first, second].map(subject => [
-    subject.binaryValue.substring(0, cutPoint),
-    subject.binaryValue.substring(cutPoint),
+  const parts = [first, second].map(value => [
+    value.binaryValue.substring(0, cutPoint),
+    value.binaryValue.substring(cutPoint),
   ]);
 
   const binaryValues = [
@@ -26,12 +26,9 @@ export const combineSubjects: CombineSubjectsType = (first, second, cutPoint) =>
     `${parts[1][0]}${parts[0][1]}`,
   ];
 
-  const [firstValue, secondValue] = binaryValues.map(value => parseInt(value, 2));
+  const [firstValue, secondValue] = binaryValues.map(value => Subject.fromBinaryString(value));
 
-  return [
-    new Subject(firstValue),
-    new Subject(secondValue),
-  ];
+  return [firstValue, secondValue];
 };
 
 export const mutateSubject: MutateSubjectType = (subject) => {

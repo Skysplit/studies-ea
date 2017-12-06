@@ -1,5 +1,5 @@
 // @flow
-import { max, map, find } from 'lodash';
+import { max } from 'lodash';
 import { Subject } from './subject';
 import { mutator } from './mutator';
 import { crosser } from './crosser';
@@ -31,10 +31,12 @@ export class Population {
     return this;
   }
 
-  max = (): ?Subject => find(
-    this.subjects,
-    { value: max(map(this.subjects, 'value')) },
-  )
+  max = (targetFn: TargetFunctionType): Subject => {
+    const targets = this.subjects.map(subject => targetFn(subject));
+    const maxTarget = max(targets);
+    const maxTargetIndex = targets.findIndex(value => value === maxTarget);
+    return this.subjects[maxTargetIndex];
+  }
 }
 
 export default Population;

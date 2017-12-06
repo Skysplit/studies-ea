@@ -12,7 +12,7 @@ type RunnerType = (
   targetFunction: TargetFunctionType
 ) => Subject;
 
-const runner: RunnerType = (
+export const runner: RunnerType = (
   populationSize,
   populationsCount,
   breedingChance,
@@ -23,12 +23,12 @@ const runner: RunnerType = (
   const population = new Population(subjects);
 
   times(populationsCount, () => {
-    population.breed(breedingChance);
-    population.mutate(mutationChance);
-    population.select(targetFunction);
+    population
+      .breed(breedingChance, mutationChance)
+      .select(targetFunction);
   });
 
-  return population.max();
+  return population.max(targetFunction);
 };
 
 export default runner;

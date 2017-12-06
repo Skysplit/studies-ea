@@ -4,7 +4,7 @@ import csv from 'fast-csv';
 import minimist from 'minimist';
 import { times, mean } from 'lodash';
 import type { TargetFunctionType } from './src/utils';
-import runner from './src/index';
+import { runner } from './src/index';
 
 type SquarePolynomialType = (a: number, b: number, c: number, x: number) => number;
 
@@ -40,6 +40,7 @@ const file = createWriteStream('results.csv');
 csvFile.pipe(file);
 
 const values = [];
+const targetValues = [];
 const {
   subjects,
   populations,
@@ -59,11 +60,13 @@ times(parseInt(runs, 10), () => {
 
   const maxTarget = targetFn(max);
   values.push(max.value);
+  targetValues.push(maxTarget);
   csvFile.write([max.value, max.binaryValue, maxTarget]);
-  process.stdout.write(`${max.value}\n`);
+  process.stdout.write(`${max.value} -> ${maxTarget}\n`);
 });
 
-process.stdout.write(`Mean ${mean(values)}\n`);
+process.stdout.write(`Mean subject value ${mean(values)}\n`);
+process.stdout.write(`Mean target value ${mean(targetValues)}\n`);
 
 csvFile.end();
 file.end();

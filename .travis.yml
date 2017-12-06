@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+  - 8.9
+
+before_install:
+  - npm i -g npm
+
+cache:
+  directories:
+    - "node_modules"
+
+script:
+  - npm run lint
+  - npm run test:ci

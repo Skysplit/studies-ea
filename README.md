@@ -1,5 +1,7 @@
 # AI Assessment project
 
+[![Build Status](https://travis-ci.org/Skysplit/studies-ea.svg?branch=master)](https://travis-ci.org/Skysplit/studies-ea)
+
 This is simple evolutionary algorithm made for AI assessment.
 
 It tries to find the best `x` value for square polynomial result `ax^2 + bx + c`.
@@ -25,6 +27,26 @@ npm run lint
 ```
 
 This will run linter, and warn you about some ugly code or bad practices!
+
+### Tests
+
+Starting tests is done by
+
+```
+npm test
+```
+
+You can run tests in CI mode (this will run in single process and generate coverage)
+
+```bash
+npm run test:ci
+```
+
+You can also run tests watcher (it waits for changes in files)
+
+```
+npm run test:watch
+````
 
 ## Usage
 
@@ -52,13 +74,13 @@ npm start -- --a=1 --b=2 --c=3 -r=10
 
 ### Input parameters
 
-| Param | Description |
-| -- | -- |
-| `--a` | Square ponlynomial 'a' parameter. Default is 1 |
-| `--b` | Square ponlynomial 'b' parameter. Default is 1 |
-| `--c` | Square ponlynomial 'c' parameter. Default is 1 |
-| `-s`, `--subjects` | Number of subjects in population. Default is 10 |
-| `-p`, `--populations` | Number of populations (How many iterations of population there will be. Default is 15) |
-| `-m`, `--mutation` | Mutation probability. Range from 0-1 (0.3 by default) |
-| `-o`, `--crossover` | Crossover probability. Range from 0-1 (0.85 by default) |
-| `-r`, `--runs` | How many times algorithm should run. Each result is saved to CSV as separate line |
+| Param | Description | Type | Default |
+| -- | -- | -- | -- |
+| `--a` | Square ponlynomial 'a' parameter. | number | 1 |
+| `--b` | Square ponlynomial 'b' parameter. | number | 1 |
+| `--c` | Square ponlynomial 'c' parameter. | number | 1 |
+| `-s`, `--subjects` | Number of subjects in population. | number | 10 |
+| `-p`, `--populations` | Number of populations (How many iterations of population there will be.) | number | 15 |
+| `-m`, `--mutation` | Mutation probability. Range from 0-1 | number (float) | 0.3 |
+| `-o`, `--crossover` | Crossover probability. Range from 0-1 | number (float) | 0.85  |
+| `-r`, `--runs` | How many times algorithm should run. Each result is saved to CSV as separate line | number | 100 |
