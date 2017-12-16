@@ -9,8 +9,6 @@ export type CombineSubjectsType = (first: Subject, second: Subject, cutPoint: nu
 
 export type TargetFunctionType = (subject: Subject) => number;
 
-export type MutateSubjectType = (subject: Subject) => Subject;
-
 export type EventOccuredType = (chance: number) => boolean;
 
 export type CheckFateType = () => number;
@@ -29,12 +27,6 @@ export const combineSubjects: CombineSubjectsType = (first, second, cutPoint) =>
   const [firstValue, secondValue] = binaryValues.map(value => Subject.fromBinaryString(value));
 
   return [firstValue, secondValue];
-};
-
-export const mutateSubject: MutateSubjectType = (subject) => {
-  const mask = (2 ** subject.binaryValue.length) - 1;
-  // eslint-disable-next-line no-bitwise
-  return new Subject(subject.value ^ mask);
 };
 
 export const checkFate: CheckFateType = () => random(0, 1, true);

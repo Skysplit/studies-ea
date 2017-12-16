@@ -1,7 +1,7 @@
 import 'jest';
 import { random } from 'lodash';
 import { Subject } from '../subject';
-import { combineSubjects, mutateSubject, checkFate, eventOccured } from '../utils';
+import { combineSubjects, checkFate, eventOccured } from '../utils';
 
 jest.mock('lodash', () => ({
   random: jest.fn(() => 0.5),
@@ -21,13 +21,6 @@ describe('Utilities', () => {
         new Subject(0b11110000),
         new Subject(0b00001111),
       ]);
-    });
-  });
-
-  describe('#mutateSubject', () => {
-    test('should mutate subject', () => {
-      const subject = new Subject(0b10101010);
-      expect(mutateSubject(subject)).toEqual(new Subject(0b01010101));
     });
   });
 

@@ -7,7 +7,7 @@ import { Subject } from './subject';
 type RunnerType = (
   populationSize: number,
   populationCount: number,
-  breedingChance: number,
+  crossoverChance: number,
   mutationChance: number,
   targetFunction: TargetFunctionType
 ) => Subject;
@@ -15,7 +15,7 @@ type RunnerType = (
 export const runner: RunnerType = (
   populationSize,
   populationsCount,
-  breedingChance,
+  crossoverChance,
   mutationChance,
   targetFunction,
 ) => {
@@ -24,7 +24,7 @@ export const runner: RunnerType = (
 
   times(populationsCount, () => {
     population
-      .breed(breedingChance, mutationChance)
+      .breed(crossoverChance, mutationChance)
       .select(targetFunction);
   });
 

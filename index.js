@@ -49,6 +49,12 @@ const {
   crossover,
 } = argv;
 
+process.stdout.write(`Subjects: ${parseInt(subjects, 10)}\n`);
+process.stdout.write(`Populations: ${parseInt(populations, 10)}\n`);
+process.stdout.write(`Crossover change: ${parseFloat(crossover)}\n`);
+process.stdout.write(`Mutation chance: ${parseFloat(mutation)}\n`);
+process.stdout.write(`Runs: ${parseInt(runs, 10)}\n`);
+
 times(parseInt(runs, 10), () => {
   const max = runner(
     parseInt(subjects, 10),
@@ -61,7 +67,7 @@ times(parseInt(runs, 10), () => {
   const maxTarget = targetFn(max);
   values.push(max.value);
   targetValues.push(maxTarget);
-  csvFile.write([max.value, max.binaryValue, maxTarget]);
+  csvFile.write([max.value, maxTarget]);
   process.stdout.write(`${max.value} -> ${maxTarget}\n`);
 });
 
