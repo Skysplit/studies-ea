@@ -31,7 +31,7 @@ const argv = minimist(process.argv.slice(2), {
 const squarePolynomial: SquarePolynomialType = (a, b, c, x) => (a * (x ** 2)) + (b * x) + c;
 
 const targetFn: TargetFunctionType = (subject) => {
-  const params = ['a', 'b', 'c'].map(param => parseInt(argv[param] || 1, 10));
+  const params = ['a', 'b', 'c'].map(param => parseInt(argv[param] || 0, 10));
   return squarePolynomial(...params, subject.value);
 };
 
